@@ -1,5 +1,5 @@
 window.onload = currentTime();
-window.onload = saveInfo();
+// window.onload = saveInfo();
 
 var today = moment();
 $("#currentDay").text(today.format("dddd, MMMM do YYYY, h:mm:ss a"));
@@ -87,3 +87,22 @@ function currentTime() {
         $("#5pm").addClass("future");
     }
 };
+
+var saveInput = $(".saveBtn");
+saveInput.click(function(event) {
+    event.preventDefault();
+    var input = $(this).siblings(".description").val();
+    var time = $(this).parent().attr("id");
+    localStorage.setItem(time, JSON.stringify(input));
+})
+
+savedInputsFunct();
+
+function savedInputsFunct() {
+    var timeInput = $(".time-block");
+    timeInput.each(function() {
+        var timeInputEl = $(this).attr("id");
+        var inputEl = JSON.parse(localStorage.getItem(timeInputEl));
+        $(this).children(".description").val(inputEl);
+    })
+}
