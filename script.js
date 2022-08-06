@@ -1,9 +1,11 @@
+// When site loads, the current time will be available
 window.onload = currentTime();
-// window.onload = saveInfo();
 
+// Setting the current time and date
 var today = moment();
 $("#currentDay").text(today.format("dddd, MMMM do YYYY, h:mm:ss a"));
 
+// Getting the exact hour of the day and adding classes to determine whether the hour is in the past, present, or future
 function currentTime() {
     var now = moment().hour();
 
@@ -88,10 +90,11 @@ function currentTime() {
     }
 };
 
+// If user clicks the "Save" button, this will keep it in the local storage and on the schedule
 var saveInput = $(".saveBtn");
 saveInput.click(function(event) {
     event.preventDefault();
-    var input = $(this).siblings(".description").val();
+    var input = $(this).siblings(".textInputs").val();
     var time = $(this).parent().attr("id");
     localStorage.setItem(time, JSON.stringify(input));
 })
@@ -103,6 +106,6 @@ function savedInputsFunct() {
     timeInput.each(function() {
         var timeInputEl = $(this).attr("id");
         var inputEl = JSON.parse(localStorage.getItem(timeInputEl));
-        $(this).children(".description").val(inputEl);
+        $(this).children(".textInputs").val(inputEl);
     })
 }
