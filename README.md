@@ -24,3 +24,4 @@ In this homework assignment, I was able to use what I learned about HTML, CSS, a
 ![Alttext](/full-website.png)
 
 ## Link to Site
+[Link](https://lydiakim10.github.io/Daily-Schedule-Planner/)
